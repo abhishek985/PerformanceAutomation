@@ -1,4 +1,4 @@
-import re,sys, os
+import re,sys,os
 import subprocess
 import json
 
@@ -76,24 +76,58 @@ class GetData:
     def getcpucores(self):
         line_dict_cpu = {}
         try:
-            for i in range(1, 5):
-                lo = subprocess.Popen(["adb shell cat sys / devices / system / cpu / cpu" + str(i) +
-                                       " / cpufreq / scaling_cur_freq"],
-                                      stdout=subprocess.PIPE)
-                out = lo.stdout.readlines()
+            for i in range(0, 4):
+                command = "adb shell cat sys/devices/system/cpu/cpu" + str(i) + "/cpufreq/scaling_cur_freq"
+                lo = os.popen(command)
+                out = int(lo.readlines()[0].strip('\n'))
                 line_dict_cpu["CPU" + str(i)] = out
+            return json.dumps(line_dict_cpu)
         except OSError:
             return "Unable to fetch CPU core details"
-
-        if line_dict_cpu:
-            return line_dict_cpu
-        return "App not started.Unable to fetch CPU Core"
 
     def getJenkyFrames(self):
         jenky_frames_output = os.popen("adb shell dumpsys gfxinfo")
         for count, line in enumerate(jenky_frames_output.readlines()):
             if 'Janky frame' in line:
                 return int(line.split()[-2])
+
+    def getcurrentevent(self):
+        try:
+            p = subprocess.Popen(['adb', 'logcat', '-d'],  stdout=subprocess.PIPE,
+                                 stderr=subprocess.STDOUT)
+            s = p.stdout.readlines()
+            mylist = []
+            for line in s:
+                if 'cmp' in line:
+                    s1 = line.split('cmp')[1]
+                    mylist.append(s1[1:])
+
+            return mylist[-1]
+        except OSError:
+            return "Unable to fetch current event"
+
+
+    def getframestats(self, pname):
+        mylist1 = []
+        vsync = []
+        FrameCompleted = []
+        pdata = 0
+        framestats_output = os.popen("adb shell dumpsys gfxinfo " + pname + " framestats")
+        for count, line in enumerate(framestats_output.readlines()):
+
+            if '---PROFILEDATA---' in line:
+                pdata += 1
+                continue
+
+            if pdata == 1:
+                mylist1.append(line)
+
+            if pdata == 2:
+                for i in mylist1:
+                    framestats = i.split(',')
+                    vsync.append(framestats[1])
+                    FrameCompleted.append(framestats[13])
+                return zip(vsync, FrameCompleted)
 
 
 

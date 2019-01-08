@@ -1,3 +1,8 @@
-/Users/b0206672/Documents/workspace-sts-3.9.6.RELEASE/jankyframes/src/main/java/com/janky/Main.java
-/Users/b0206672/Documents/workspace-sts-3.9.6.RELEASE/jankyframes/src/main/java/com/janky/jankyService.java
-/Users/b0206672/Documents/workspace-sts-3.9.6.RELEASE/jankyframes/src/main/java/com/janky/Controller.java
+/Users/b0206672/Documents/workspace-sts-3.9.6.RELEASE/jankyframes/src/main/java/janky/Sample.java
+/Users/b0206672/Documents/workspace-sts-3.9.6.RELEASE/jankyframes/src/main/java/cpu/Controller.java
+/Users/b0206672/Documents/workspace-sts-3.9.6.RELEASE/jankyframes/src/main/java/janky/HelloController.java
+/Users/b0206672/Documents/workspace-sts-3.9.6.RELEASE/jankyframes/src/main/java/memory/memController.java
+/Users/b0206672/Documents/workspace-sts-3.9.6.RELEASE/jankyframes/src/main/java/cpu/cpuService.java
+/Users/b0206672/Documents/workspace-sts-3.9.6.RELEASE/jankyframes/src/main/java/memory/memService.java
+/Users/b0206672/Documents/workspace-sts-3.9.6.RELEASE/jankyframes/src/main/java/jank/jankyService.java
+/Users/b0206672/Documents/workspace-sts-3.9.6.RELEASE/jankyframes/src/main/java/jank/jankController.java

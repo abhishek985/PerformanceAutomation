@@ -1,3 +1,8 @@
-com/janky/Main.class
-com/janky/Controller.class
-com/janky/jankyService.class
+memory/memController.class
+janky/HelloController.class
+cpu/Controller.class
+memory/memService.class
+janky/Sample.class
+cpu/cpuService.class
+jank/jankController.class
+jank/jankyService.class
